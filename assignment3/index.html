@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="5">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Weather Data</h1>
+    {{range .Status}}
+    <div>
+        <p>Water: {{.WaterStatus}}</p>
+        <p>Water Status:
+        {{if lt .WaterStatus 5}}
+        Aman
+        {{else if and (ge .WaterStatus 6)  (lt .WaterStatus  8) }}
+        Siaga
+        {{else}}
+        Bahaya
+        {{end}}
+        </p>
+        <p>Wind: {{.WindStatus}}</p>
+        <p>Wind Status:
+            {{if lt .WindStatus 6}}
+            Aman
+            {{else if and (ge .WindStatus 7)  (lt .WindStatus  15) }}
+            Siaga
+            {{else}}
+            Bahaya
+            {{end}}
+            </p>
+    </div>
+
+    {{end}}
+</body>
+</html>
