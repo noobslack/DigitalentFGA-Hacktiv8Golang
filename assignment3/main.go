@@ -41,14 +41,15 @@ func getStatus(w http.ResponseWriter, r *http.Request) {
 				WindStatus:  uint(rand.Intn(20)),
 			}},
 		}
-		if err := saveToJSON(response); err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
 
 		err = tpl.Execute(w, response)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+
+		if err := saveToJSON(response); err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
 
